@@ -1,12 +1,23 @@
-const { VITE_WEATHER_API_KEY } = import.meta.env;
+import { useEffect, useState } from "react";
+
+const { VITE_POKE_API_BASE_URL } = import.meta.env;
 
 export const App = () => {
-  const items = ["Item 1", "Item 2", "Item 3", "Item 4", "Item 5"];
+  const [pokemons, setPokemons] = useState([]);
+
+  useEffect(() => {
+    fetch(`${VITE_POKE_API_BASE_URL}pokemon/`)
+      .then((response) => response.json())
+      .then((data) => {
+        setPokemons(data.results);
+      });
+  }, []);
+
   return (
     <>
       <ul>
-        {items.map((item) => (
-          <li key={item}>{item}</li>
+        {pokemons.map((pokemon) => (
+          <li key={pokemon.url}>{pokemon.name}</li>
         ))}
       </ul>
     </>
