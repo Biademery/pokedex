@@ -16,8 +16,15 @@ export const App = () => {
   return (
     <>
       <ul>
-        {pokemons.map((pokemon) => (
-          <li key={pokemon.url}>{pokemon.name}</li>
+        {pokemons.map((pokemon, index) => (
+          <li key={pokemon.url}>
+            <img
+              src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${
+                index + 1
+              }.png`}
+            />
+            <a href={pokemon.url}>{pokemon.name}</a>
+          </li>
         ))}
       </ul>
     </>
