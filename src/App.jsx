@@ -1,1 +1,6 @@
-export const App = () => <h1>Hello World</h1>;
+const { VITE_WEATHER_API_KEY } = import.meta.env;
+
+export const App = () => {
+  return <>
+        </>;
+};
