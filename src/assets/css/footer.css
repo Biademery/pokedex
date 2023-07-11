@@ -1,0 +1,21 @@
+.footer {
+    display: flex;
+    justify-content: center;
+}
+
+.btn {
+    margin: 20px;
+    font-size: large;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    padding: 20px 26px;
+    text-align: center;
+    background-color: #ff1919;
+    color: #f1f1f1;
+    transition: ease-in-out 0.2s;
+}
+
+.btn:hover {
+    background-color: #ff1919ad
+}

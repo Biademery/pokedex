@@ -1,0 +1,30 @@
+.list {
+    display: flex;
+    flex-wrap: wrap;
+    list-style: none;
+    padding: 60px;
+    gap: 50px;
+    justify-content: center;
+}
+
+a {
+    text-decoration: none;
+    color: #232b2b;
+}
+
+.sprite {
+    width: 96px;
+}
+
+.card {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    width: 190px;
+    border-radius: 30px;
+    background: #e0e0e0;
+    box-shadow: 15px 15px 30px #bebebe,
+        -15px -15px 30px #ffffff;
+}

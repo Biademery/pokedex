@@ -1,0 +1,12 @@
+.header {
+  background-color: #ff1919;
+  display: flex;
+  padding: 20px;
+  color: #f1f1f1;
+  gap: 50px;
+  align-items: center;
+}
+
+img {
+  width: 60px;
+}
