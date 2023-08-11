@@ -1,19 +1,45 @@
 import { useEffect, useState } from "react";
-const { VITE_POKE_API_BASE_URL } = import.meta.env;
 import "../assets/css/pokemonCard.css";
+import "../assets/css/footer.css";
+import pokebola from "../assets/pokebola.png";
+import "../assets/css/header.css";
 
 export const PokemonCard = () => {
   const [pokemons, setPokemons] = useState([]);
 
   useEffect(() => {
-    fetch(`${VITE_POKE_API_BASE_URL}pokemon/`)
+    fetch(`http://pokeapi.co/api/v2/pokemon/`)
       .then((response) => response.json())
       .then((data) => {
+        console.log(data);
         setPokemons(data.results);
       });
   }, []);
+
+  const [index, setIndex] = useState(0);
+  console.log(index);
+
+  const handleNextClick = () => {
+    const newIndex = index + 20;
+    setIndex(newIndex);
+
+    fetch(`https://pokeapi.co/api/v2/pokemon/?offset=${newIndex}&limit=20`)
+      .then((response) => response.json())
+      .then((newData) => {
+        console.log(newData);
+      })
+      .catch((error) => {
+        console.error("Erro na requisição:", error);
+      });
+  };
+
   return (
     <>
+      <div className="header">
+        <img src={pokebola} alt="Imagem da Pokebola" />
+        <h1>Pokédex</h1>
+      </div>
+
       <ul className="list">
         {pokemons.map((pokemon, index) => (
           <li key={pokemon.url} className="card">
@@ -29,6 +55,12 @@ export const PokemonCard = () => {
           </li>
         ))}
       </ul>
+      <div className="footer">
+        <button className="btn">Back</button>
+        <button className="btn" onClick={handleNextClick}>
+          Next
+        </button>
+      </div>
     </>
   );
 };
