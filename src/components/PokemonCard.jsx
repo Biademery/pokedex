@@ -11,27 +11,39 @@ export const PokemonCard = () => {
     fetch(`http://pokeapi.co/api/v2/pokemon/`)
       .then((response) => response.json())
       .then((data) => {
-        console.log(data);
         setPokemons(data.results);
       });
   }, []);
 
   const [index, setIndex] = useState(0);
-  console.log(index);
 
   const handleNextClick = () => {
     const newIndex = index + 20;
-    setIndex(newIndex);
+    const newIndexMax = Math.min(newIndex, 1280);
+    setIndex(newIndexMax);
 
-    fetch(`https://pokeapi.co/api/v2/pokemon/?offset=${newIndex}&limit=20`)
+    fetch(`https://pokeapi.co/api/v2/pokemon/?offset=${newIndexMax}&limit=20`)
       .then((response) => response.json())
       .then((newData) => {
-        console.log(newData);
-      })
-      .catch((error) => {
-        console.error("Erro na requisição:", error);
+        setPokemons(newData.results);
       });
   };
+
+  const handlePreviousClick = () => {
+    const newIndex = index - 20;
+    const newIndexMax = Math.max(newIndex, 0);
+    setIndex(newIndexMax);
+
+    fetch(`https://pokeapi.co/api/v2/pokemon/?offset=${newIndexMax}&limit=20`)
+      .then((response) => response.json())
+      .then((newData) => {
+        setPokemons(newData.results);
+      });
+  };
+
+  function capitalizeFirstLetter(str) {
+    return str.charAt(0).toUpperCase() + str.slice(1);
+  }
 
   return (
     <>
@@ -50,13 +62,15 @@ export const PokemonCard = () => {
                   index + 1
                 }.png`}
               />
-              <h2>{pokemon.name}</h2>
+              <h2>{capitalizeFirstLetter(pokemon.name)}</h2>
             </a>
           </li>
         ))}
       </ul>
       <div className="footer">
-        <button className="btn">Back</button>
+        <button className="btn" onClick={handlePreviousClick}>
+          Back
+        </button>
         <button className="btn" onClick={handleNextClick}>
           Next
         </button>
