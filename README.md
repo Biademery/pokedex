@@ -13,6 +13,8 @@
   </a>
 </p>
 
+<img src="./src/assets/images/pokédex.png"
+
 ## 💻 Projeto
 
 Uma pokedex com todos os pokemons.
