@@ -13,7 +13,7 @@
   </a>
 </p>
 
-<img src="./src/assets/images/pokédex.png"
+<img src="./src/assets/images/pokédex.png">
 
 ## 💻 Projeto
 
