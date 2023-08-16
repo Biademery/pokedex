@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import "../assets/css/pokemonCard.css";
 import "../assets/css/footer.css";
-import pokebola from "../assets/pokebola.png";
+import pokebola from "../assets/images/pokebola.png";
 import "../assets/css/header.css";
 
 export const PokemonCard = () => {
