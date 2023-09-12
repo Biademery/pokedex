@@ -3,6 +3,7 @@ import "../assets/css/pokemonCard.css";
 import "../assets/css/footer.css";
 import pokebola from "../assets/images/pokebola.png";
 import "../assets/css/header.css";
+import { Link } from "react-router-dom";
 
 export const PokemonCard = () => {
   const [pokemons, setPokemons] = useState([]);
@@ -47,13 +48,15 @@ export const PokemonCard = () => {
       <ul className="list">
         {pokemons.map((pokemon) => (
           <li key={pokemon.url} className="card">
-            <a href={pokemon.url} target="_blank" rel="noreferrer">
+            {/* <a href={pokemon.url} target="_blank" rel="noreferrer"> */}
+            <Link to="/detalhes">
               <img
                 className="sprite"
                 src={getHighResImageUrl(pokemon.url.split("/")[6])}
               />
               <h2>{capitalizeFirstLetter(pokemon.name)}</h2>
-            </a>
+            </Link>
+            {/* </a> */}
           </li>
         ))}
       </ul>
