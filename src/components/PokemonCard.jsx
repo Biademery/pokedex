@@ -6,44 +6,36 @@ import "../assets/css/header.css";
 
 export const PokemonCard = () => {
   const [pokemons, setPokemons] = useState([]);
+  const [index, setIndex] = useState(0);
 
   useEffect(() => {
-    fetch(`http://pokeapi.co/api/v2/pokemon/`)
+    fetch(`https://pokeapi.co/api/v2/pokemon/?offset=${index}&limit=20`)
       .then((response) => response.json())
       .then((data) => {
         setPokemons(data.results);
       });
-  }, []);
-
-  const [index, setIndex] = useState(0);
+  }, [index]);
 
   const handleNextClick = () => {
     const newIndex = index + 20;
     const newIndexMax = Math.min(newIndex, 1280);
     setIndex(newIndexMax);
-
-    fetch(`https://pokeapi.co/api/v2/pokemon/?offset=${newIndexMax}&limit=20`)
-      .then((response) => response.json())
-      .then((newData) => {
-        setPokemons(newData.results);
-      });
   };
 
   const handlePreviousClick = () => {
     const newIndex = index - 20;
     const newIndexMax = Math.max(newIndex, 0);
     setIndex(newIndexMax);
-
-    fetch(`https://pokeapi.co/api/v2/pokemon/?offset=${newIndexMax}&limit=20`)
-      .then((response) => response.json())
-      .then((newData) => {
-        setPokemons(newData.results);
-      });
   };
 
   function capitalizeFirstLetter(str) {
     return str.charAt(0).toUpperCase() + str.slice(1);
   }
+
+  const getHighResImageUrl = (id) => {
+    const formattedId = String(id).padStart(3, "0");
+    return `https://assets.pokemon.com/assets/cms2/img/pokedex/full/${formattedId}.png`;
+  };
 
   return (
     <>
@@ -53,14 +45,12 @@ export const PokemonCard = () => {
       </div>
 
       <ul className="list">
-        {pokemons.map((pokemon, index) => (
+        {pokemons.map((pokemon) => (
           <li key={pokemon.url} className="card">
             <a href={pokemon.url} target="_blank" rel="noreferrer">
               <img
                 className="sprite"
-                src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${
-                  index + 1
-                }.png`}
+                src={getHighResImageUrl(pokemon.url.split("/")[6])}
               />
               <h2>{capitalizeFirstLetter(pokemon.name)}</h2>
             </a>
