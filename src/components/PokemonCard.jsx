@@ -4,6 +4,7 @@ import "../assets/css/footer.css";
 import pokebola from "../assets/images/pokebola.png";
 import "../assets/css/header.css";
 import { Link } from "react-router-dom";
+import { capitalizeFirstLetter, getHighResImageUrl } from "../pokemonUtils";
 
 export const PokemonCard = () => {
   const [pokemons, setPokemons] = useState([]);
@@ -29,13 +30,9 @@ export const PokemonCard = () => {
     setIndex(newIndexMax);
   };
 
-  function capitalizeFirstLetter(str) {
-    return str.charAt(0).toUpperCase() + str.slice(1);
-  }
-
-  const getHighResImageUrl = (id) => {
-    const formattedId = String(id).padStart(3, "0");
-    return `https://assets.pokemon.com/assets/cms2/img/pokedex/full/${formattedId}.png`;
+  const extractIdFromUrl = (url) => {
+    const parts = url.split("/");
+    return parts[parts.length - 2];
   };
 
   return (
@@ -48,15 +45,13 @@ export const PokemonCard = () => {
       <ul className="list">
         {pokemons.map((pokemon) => (
           <li key={pokemon.url} className="card">
-            {/* <a href={pokemon.url} target="_blank" rel="noreferrer"> */}
-            <Link to="/detalhes">
+            <Link to={`/pokemon/${extractIdFromUrl(pokemon.url)}`}>
               <img
                 className="sprite"
                 src={getHighResImageUrl(pokemon.url.split("/")[6])}
               />
               <h2>{capitalizeFirstLetter(pokemon.name)}</h2>
             </Link>
-            {/* </a> */}
           </li>
         ))}
       </ul>

@@ -8,7 +8,7 @@ export function App() {
     <BrowserRouter>
       <Routes>
         <Route index element={<PokemonCard />} />
-        <Route path="/detalhes" element={<PokemonDetails />} />
+        <Route path="/pokemon/:id" element={<PokemonDetails />} />
       </Routes>
     </BrowserRouter>
   );
