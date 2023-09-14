@@ -2,6 +2,31 @@ li {
     list-style: none;
 }
 
+.loader {
+    border: 5px solid #404346;
+    border-radius: 50%;
+    border-top: 5px solid #ffffff;
+    width: 30px;
+    height: 30px;
+    animation: spin 2s linear infinite;
+    visibility: hidden;
+    margin: 20px auto;
+}
+
+.loader.display {
+    visibility: visible;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
 .container {
     display: flex;
     justify-content: center;
@@ -15,8 +40,8 @@ li {
     padding: 15px;
     border-radius: 30px;
     background: #e0e0e0;
-    box-shadow: 15px 15px 30px #bebebe,
-        -15px -15px 30px #ffffff;
+    box-shadow: 15px 15px 30px #525252,
+        -15px -15px 30px #414141;
     width: fit-content;
     min-width: 600px;
     min-height: 500px;
@@ -172,4 +197,77 @@ strong {
 
 .flying {
     background-color: #3dc7ef;
+}
+
+#background.water {
+    background: #64dbff url("../images/bg-poke.webp");
+
+}
+
+#background.grass {
+    background: #9bcc50 url("../images/bg-poke.webp");
+}
+
+#background.poison {
+    background: #b97fc9 url("../images/bg-poke.webp");
+}
+
+#background.fire {
+    background: #fd7d24 url("../images/bg-poke.webp");
+}
+
+#background.bug {
+    background: #729f3f url("../images/bg-poke.webp");
+}
+
+#background.normal {
+    background: #a4acaf url("../images/bg-poke.webp");
+}
+
+#background.steel {
+    background: #9eb7b8 url("../images/bg-poke.webp");
+}
+
+#background.ground {
+    background: #f7de3f url("../images/bg-poke.webp");
+}
+
+#background.fighting {
+    background: #d56723 url("../images/bg-poke.webp");
+}
+
+#background.rock {
+    background: #a38c21 url("../images/bg-poke.webp");
+}
+
+#background.electric {
+    background: #fffa07 url("../images/bg-poke.webp");
+}
+
+#background.ghost {
+    background: #7b62a3 url("../images/bg-poke.webp");
+}
+
+#background.psychic {
+    background: #f366b9 url("../images/bg-poke.webp");
+}
+
+#background.ice {
+    background: #51c4e7 url("../images/bg-poke.webp");
+}
+
+#background.dragon {
+    background: #53a4cf url("../images/bg-poke.webp");
+}
+
+#background.fairy {
+    background: #fdb9e9 url("../images/bg-poke.webp");
+}
+
+#background.dark {
+    background: #2a2a2a url("../images/bg-poke.webp");
+}
+
+#background.flying {
+    background: #3dc7ef url("../images/bg-poke.webp");
 }

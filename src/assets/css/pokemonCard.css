@@ -5,6 +5,7 @@
     padding: 60px;
     gap: 50px;
     justify-content: center;
+    background: #c1c1c1 url("../images/bg-poke.webp");
 }
 
 a {
@@ -33,8 +34,8 @@ a {
     height: 220px;
     border-radius: 30px;
     background: #e0e0e0;
-    box-shadow: 15px 15px 30px #bebebe,
-        -15px -15px 30px #ffffff;
+    box-shadow: 15px 15px 30px #c4c4c4,
+        -15px -15px 30px #919191;
     position: relative;
     transition: transform 0.3s ease;
 }

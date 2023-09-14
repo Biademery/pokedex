@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { getHighResImageUrl, capitalizeFirstLetter } from "../pokemonUtils";
+import { Loader } from "./Loader";
 import "../assets/css/pokemonDetails.css";
 
 export const PokemonDetails = () => {
@@ -13,7 +14,7 @@ export const PokemonDetails = () => {
       .then((data) => {
         setPokemonDetail(data);
       });
-  }, []);
+  }, [id]);
 
   function formatStatName(name) {
     return name
@@ -24,10 +25,10 @@ export const PokemonDetails = () => {
 
   return (
     <>
-      <div className="container">
-        <div className="card-detail">
-          {pokemonDetail ? (
-            <div>
+      {pokemonDetail ? (
+        <div id="background" className={pokemonDetail.types[0].type.name}>
+          <div className="container">
+            <div className="card-detail">
               <h1>{capitalizeFirstLetter(pokemonDetail.name)}</h1>
               <div className="diplay-grid">
                 <img
@@ -83,11 +84,11 @@ export const PokemonDetails = () => {
                 </li>
               </ul>
             </div>
-          ) : (
-            <p>C...</p>
-          )}
+          </div>
         </div>
-      </div>
+      ) : (
+        <Loader />
+      )}
     </>
   );
 };
