@@ -6,6 +6,7 @@
     gap: 50px;
     justify-content: center;
     background: #c1c1c1 url("../images/bg-poke.webp");
+    min-height: 100vh;
 }
 
 a {

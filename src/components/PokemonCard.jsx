@@ -5,6 +5,7 @@ import pokebola from "../assets/images/pokebola.png";
 import "../assets/css/header.css";
 import { Link } from "react-router-dom";
 import { capitalizeFirstLetter, getHighResImageUrl } from "../pokemonUtils";
+import { Loader } from "./Loader";
 
 export const PokemonCard = () => {
   const [pokemons, setPokemons] = useState([]);
@@ -34,6 +35,7 @@ export const PokemonCard = () => {
     const parts = url.split("/");
     return parts[parts.length - 2];
   };
+  console.log(pokemons);
 
   return (
     <>
@@ -43,17 +45,21 @@ export const PokemonCard = () => {
       </div>
 
       <ul className="list">
-        {pokemons.map((pokemon) => (
-          <li key={pokemon.url} className="card">
-            <Link to={`/pokemon/${extractIdFromUrl(pokemon.url)}`}>
-              <img
-                className="sprite"
-                src={getHighResImageUrl(pokemon.url.split("/")[6])}
-              />
-              <h2>{capitalizeFirstLetter(pokemon.name)}</h2>
-            </Link>
-          </li>
-        ))}
+        {pokemons.length > 1 ? (
+          pokemons.map((pokemon) => (
+            <li key={pokemon.url} className="card">
+              <Link to={`/pokemon/${extractIdFromUrl(pokemon.url)}`}>
+                <img
+                  className="sprite"
+                  src={getHighResImageUrl(pokemon.url.split("/")[6])}
+                />
+                <h2>{capitalizeFirstLetter(pokemon.name)}</h2>
+              </Link>
+            </li>
+          ))
+        ) : (
+          <Loader />
+        )}
       </ul>
       <div className="footer">
         <button className="btn" onClick={handlePreviousClick}>
