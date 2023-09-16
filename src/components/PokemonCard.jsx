@@ -1,8 +1,6 @@
 import { useEffect, useState } from "react";
 import "../assets/css/pokemonCard.css";
-import "../assets/css/footer.css";
 import pokebola from "../assets/images/pokebola.png";
-import "../assets/css/header.css";
 import { Link } from "react-router-dom";
 import { capitalizeFirstLetter, getHighResImageUrl } from "../pokemonUtils";
 import { Loader } from "./Loader";
@@ -40,34 +38,37 @@ export const PokemonCard = () => {
   return (
     <>
       <div className="header">
-        <img src={pokebola} alt="Imagem da Pokebola" />
+        <img src={pokebola} alt="Pokebola" />
         <h1>Pokédex</h1>
       </div>
 
-      <ul className="list">
-        {pokemons.length > 1 ? (
-          pokemons.map((pokemon) => (
-            <li key={pokemon.url} className="card">
-              <Link to={`/pokemon/${extractIdFromUrl(pokemon.url)}`}>
-                <img
-                  className="sprite"
-                  src={getHighResImageUrl(pokemon.url.split("/")[6])}
-                />
-                <h2>{capitalizeFirstLetter(pokemon.name)}</h2>
-              </Link>
-            </li>
-          ))
-        ) : (
-          <Loader />
-        )}
-      </ul>
-      <div className="footer">
-        <button className="btn" onClick={handlePreviousClick}>
-          Back
-        </button>
-        <button className="btn" onClick={handleNextClick}>
-          Next
-        </button>
+      <div className="body">
+        <ul className="pokemons">
+          {pokemons.length > 1 ? (
+            pokemons.map((pokemon) => (
+              <li key={pokemon.url} className="pokemon">
+                <Link to={`/pokemon/${extractIdFromUrl(pokemon.url)}`}>
+                  <img
+                    className="sprite"
+                    src={getHighResImageUrl(pokemon.url.split("/")[6])}
+                    alt={pokemon.name}
+                  />
+                  <h2>{capitalizeFirstLetter(pokemon.name)}</h2>
+                </Link>
+              </li>
+            ))
+          ) : (
+            <Loader />
+          )}
+        </ul>
+        <div className="button">
+          <button className="btn" onClick={handlePreviousClick}>
+            Back
+          </button>
+          <button className="btn" onClick={handleNextClick}>
+            Next
+          </button>
+        </div>
       </div>
     </>
   );

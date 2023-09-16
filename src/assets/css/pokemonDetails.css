@@ -1,7 +1,3 @@
-li {
-    list-style: none;
-}
-
 .container {
     display: flex;
     justify-content: center;
